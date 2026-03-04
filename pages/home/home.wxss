@@ -1,0 +1,86 @@
+.hero-card {
+  background: linear-gradient(145deg, #f8fcf8 0%, #eef4ef 68%, #eaf0ea 100%);
+}
+
+.hero-kicker {
+  color: #5d756a;
+  font-size: 28rpx;
+  letter-spacing: 0.6rpx;
+}
+
+.hero-time {
+  font-size: 52rpx;
+  font-weight: 700;
+  color: #2f433a;
+  margin: 10rpx 0;
+}
+
+.hero-time-record-only {
+  font-size: 46rpx;
+}
+
+.hero-window {
+  color: #4c6158;
+  font-size: 28rpx;
+}
+
+.hero-reason {
+  margin-top: 12rpx;
+}
+
+.hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 14rpx;
+}
+
+.btn-apply {
+  margin-top: 16rpx;
+  height: 74rpx;
+  border-radius: 14rpx;
+  background: #3f6d5a;
+  color: #ffffff;
+  font-size: 28rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-apply::after {
+  border: none;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12rpx;
+}
+
+.metric-item {
+  background: #f6faf7;
+  border: 1rpx solid #dfe8e1;
+  border-radius: 16rpx;
+  padding: 16rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.metric-value {
+  font-size: 30rpx;
+  color: #2e4037;
+  font-weight: 600;
+}
+
+.encouragement {
+  margin-top: 14rpx;
+  padding: 16rpx;
+  background: #eef7f1;
+  border: 1rpx solid #d5e8da;
+  border-radius: 14rpx;
+  color: #35584a;
+  font-size: 25rpx;
+  line-height: 1.6;
+}

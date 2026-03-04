@@ -1,0 +1,31 @@
+<view class="container">
+  <view class="card">
+    <view class="card-title">什么是 CBT-I</view>
+    <view class="tip">CBT-I 是失眠认知行为疗法，核心目标是重建稳定的睡眠驱动力和生物节律。它不依赖临时“助眠技巧”，而是通过连续执行来恢复自然睡眠。</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">睡眠限制的总体原则</view>
+    <view class="tip">1. 固定起床时间优先，每天尽量一致。</view>
+    <view class="tip">2. 第一周先记录，不急于改窗口。</view>
+    <view class="tip">3. 每满7天，基于数据计算下一周期窗口并手动生效。</view>
+    <view class="tip">4. 白天尽量避免小睡；若必须小睡，控制在20-30分钟。</view>
+    <view class="tip">5. 夜间在床上只做睡眠相关行为，减少“躺床清醒”。</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">执行步骤（建议）</view>
+    <view class="tip">第1步：设置固定起床时间，连续执行。</view>
+    <view class="tip">第2步：每日记录睡眠日记和习惯项。</view>
+    <view class="tip">第3步：满7天后查看“本周建议窗口”。</view>
+    <view class="tip">第4步：点击“生效本周窗口”进入下一周期。</view>
+    <view class="tip">第5步：每周复盘一次，不按单日好坏判断成败。</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">常见波动</view>
+    <view class="tip">开始1-2周出现“更困但更焦虑”或短期睡差，属于常见过渡反应，不代表失败。关键是先守住节律（固定起床 + 连续记录 + 周期复盘）。</view>
+  </view>
+
+  <button class="btn-primary" bindtap="goDiary">我已了解，去记录日记</button>
+</view>

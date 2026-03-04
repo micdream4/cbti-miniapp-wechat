@@ -1,0 +1,123 @@
+<view class="container">
+  <view class="card intro-card">
+    <view class="card-title">每天 1 分钟，稳定执行</view>
+    <view class="tip">按真实状态填写即可，不追求完美。连续记录比单日数据更重要。</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">{{isEdit ? '编辑记录' : '今日记录'}}</view>
+
+    <view class="row form-row">
+      <text class="label">日期</text>
+      <picker mode="date" value="{{form.date}}" bindchange="onDateChange">
+        <view class="picker value field-control">{{form.date}}</view>
+      </picker>
+    </view>
+
+    <view class="row form-row">
+      <text class="label">上床时间</text>
+      <picker mode="time" value="{{form.inBedTime}}" data-field="inBedTime" bindchange="onTimeChange">
+        <view class="picker value field-control">{{form.inBedTime}}</view>
+      </picker>
+    </view>
+
+    <view class="row form-row">
+      <text class="label">起床时间</text>
+      <picker mode="time" value="{{form.outBedTime}}" data-field="outBedTime" bindchange="onTimeChange">
+        <view class="picker value field-control">{{form.outBedTime}}</view>
+      </picker>
+    </view>
+
+    <view class="row form-row">
+      <text class="label">入睡花费（分钟）</text>
+      <input class="input field-control" type="number" data-field="sleepLatencyMin" value="{{form.sleepLatencyMin}}" bindinput="onNumberInput" />
+    </view>
+
+    <view class="row form-row">
+      <text class="label">夜间清醒总时长（分钟）</text>
+      <input class="input field-control" type="number" data-field="wakeAfterSleepOnsetMin" value="{{form.wakeAfterSleepOnsetMin}}" bindinput="onNumberInput" />
+    </view>
+
+    <view class="row form-row">
+      <text class="label">早醒后未再入睡（分钟）</text>
+      <input class="input field-control" type="number" data-field="earlyWakeMin" value="{{form.earlyWakeMin}}" bindinput="onNumberInput" />
+    </view>
+
+    <view class="row form-row">
+      <text class="label">白天小睡（分钟）</text>
+      <input class="input field-control" type="number" data-field="napMin" value="{{form.napMin}}" bindinput="onNumberInput" />
+    </view>
+    <view class="tip inline-tip">说明：白天小睡不计入“夜间总睡眠时长”，仅用于习惯分析。</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">睡前习惯（可选）</view>
+    <view class="habit-group-title">可能影响睡眠</view>
+
+    <view class="row switch-row">
+      <text class="label">14:00后摄入咖啡因</text>
+      <switch class="habit-switch" checked="{{form.caffeineAfter2pm}}" data-field="caffeineAfter2pm" bindchange="onSwitchChange" color="#7f9d8f" />
+    </view>
+
+    <view class="row switch-row">
+      <text class="label">今晚有饮酒</text>
+      <switch class="habit-switch" checked="{{form.alcoholTonight}}" data-field="alcoholTonight" bindchange="onSwitchChange" color="#7f9d8f" />
+    </view>
+
+    <view class="row switch-row">
+      <text class="label">睡前1小时看屏幕</text>
+      <switch class="habit-switch" checked="{{form.screenWithin1h}}" data-field="screenWithin1h" bindchange="onSwitchChange" color="#7f9d8f" />
+    </view>
+
+    <view class="row switch-row">
+      <text class="label">睡前3小时内做了剧烈运动</text>
+      <switch class="habit-switch" checked="{{form.intenseEveningExercise}}" data-field="intenseEveningExercise" bindchange="onSwitchChange" color="#7f9d8f" />
+    </view>
+
+    <view class="divider"></view>
+    <view class="habit-group-title">加分习惯</view>
+
+    <view class="row switch-row">
+      <text class="label">白天进行了规律运动</text>
+      <switch class="habit-switch" checked="{{form.daytimeExercise}}" data-field="daytimeExercise" bindchange="onSwitchChange" color="#7f9d8f" />
+    </view>
+
+    <view class="row switch-row">
+      <text class="label">早上进行了20分钟户外阳光照射</text>
+      <switch class="habit-switch" checked="{{form.morningSunlight20min}}" data-field="morningSunlight20min" bindchange="onSwitchChange" color="#7f9d8f" />
+    </view>
+
+    <view class="row switch-row">
+      <text class="label">睡前做了10分钟放松训练</text>
+      <switch class="habit-switch" checked="{{form.relaxationPractice}}" data-field="relaxationPractice" bindchange="onSwitchChange" color="#7f9d8f" />
+    </view>
+
+    <view class="row switch-row">
+      <text class="label">睡前保留30分钟无屏幕缓冲</text>
+      <switch class="habit-switch" checked="{{form.screenFree30min}}" data-field="screenFree30min" bindchange="onSwitchChange" color="#7f9d8f" />
+    </view>
+
+    <view class="row switch-row">
+      <text class="label">卧室保持安静、遮光、偏凉</text>
+      <switch class="habit-switch" checked="{{form.bedroomComfort}}" data-field="bedroomComfort" bindchange="onSwitchChange" color="#7f9d8f" />
+    </view>
+
+    <view class="divider"></view>
+    <view class="label" style="margin-bottom: 12rpx;">备注（可选）</view>
+    <textarea class="textarea" maxlength="200" value="{{form.note}}" bindinput="onNoteInput" placeholder="例如：今天压力较大，夜间醒来2次" />
+  </view>
+
+  <view class="card">
+    <view class="card-title">自动计算（预览）</view>
+    <view class="row">
+      <text class="label">预计总睡眠时长</text>
+      <text class="value">{{previewSleep}}</text>
+    </view>
+    <view class="row">
+      <text class="label">预计睡眠效率</text>
+      <text class="value">{{previewEfficiency}}</text>
+    </view>
+  </view>
+
+  <button class="btn-primary" bindtap="onSubmit">保存今天记录</button>
+</view>

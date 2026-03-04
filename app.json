@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/guide/guide",
+    "pages/diary/diary",
+    "pages/history/history",
+    "pages/templates/templates"
+  ],
+  "window": {
+    "navigationBarTitleText": "CBT-I 睡眠教练",
+    "navigationBarBackgroundColor": "#edf3ee",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f5f2ec",
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

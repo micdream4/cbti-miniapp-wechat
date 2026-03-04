@@ -1,0 +1,36 @@
+.history-intro {
+  background: linear-gradient(145deg, #f7fbf8 0%, #edf4ef 100%);
+}
+
+.history-card {
+  padding-bottom: 20rpx;
+}
+
+.action-row {
+  gap: 12rpx;
+}
+
+.small-btn {
+  flex: 1;
+  height: 72rpx;
+  font-size: 28rpx;
+  border-radius: 14rpx;
+  background: #e8f0ea;
+  color: #355247;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0 14rpx;
+  font-weight: 600;
+}
+
+.danger {
+  background: #f4e9e7;
+  color: #844c43;
+}
+
+.small-btn::after {
+  border: none;
+}

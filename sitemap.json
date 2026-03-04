@@ -1,0 +1,9 @@
+{
+  "desc": "sleep coach mini program",
+  "rules": [
+    {
+      "action": "allow",
+      "page": "*"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+<view class="container">
+  <view class="card hero-card">
+    <view class="hero-kicker">今晚建议执行时段</view>
+    <view class="hero-time {{isRecordOnly ? 'hero-time-record-only' : ''}}">{{timeRangeText}}</view>
+    <view class="hero-window">当前睡眠窗口：{{sleepWindow}}</view>
+    <view class="hero-window" wx:if="{{nextSleepWindow}}">本周建议窗口：{{nextSleepWindow}}</view>
+    <view class="tip hero-reason">{{reason}}</view>
+    <view class="hero-pills">
+      <text class="pill">本周期 {{cycleProgress}}</text>
+      <text class="pill">近7天效率 {{avgEfficiency}}</text>
+    </view>
+    <button class="btn-apply" wx:if="{{canApplyWindow}}" bindtap="onApplyWindow">生效本周窗口</button>
+  </view>
+
+  <view class="card">
+    <view class="card-title">执行锚点</view>
+    <view class="row">
+      <text class="label">固定起床时间</text>
+      <picker mode="time" value="{{fixedWakeTime}}" bindchange="onWakeTimeChange">
+        <view class="picker value">{{fixedWakeTime}}</view>
+      </picker>
+    </view>
+    <view class="row">
+      <text class="label">已有习惯可手动设窗</text>
+      <picker mode="selector" range="{{windowOptions}}" range-key="label" value="{{selectedWindowIndex}}" bindchange="onWindowOptionChange">
+        <view class="picker value">{{windowOptions[selectedWindowIndex].label}}</view>
+      </picker>
+    </view>
+    <view class="tip">首周默认只记录。若你已有稳定作息，可先手动设置睡眠窗口执行。</view>
+    <view class="tip">每天优先守住固定起床时间，再根据建议窗口执行即可。</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">记录概览</view>
+    <view class="metric-grid">
+      <view class="metric-item">
+        <text class="label">最近记录</text>
+        <text class="metric-value">{{latestDate}}</text>
+      </view>
+      <view class="metric-item">
+        <text class="label">最近睡眠时长</text>
+        <text class="metric-value">{{latestSleep}}</text>
+      </view>
+      <view class="metric-item">
+        <text class="label">最近睡眠效率</text>
+        <text class="metric-value">{{latestEfficiency}}</text>
+      </view>
+      <view class="metric-item">
+        <text class="label">近7天平均睡眠</text>
+        <text class="metric-value">{{avgSleep}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="card" wx:if="{{habitTips.length}}">
+    <view class="card-title">温和提醒</view>
+    <view class="tip" wx:for="{{habitTips}}" wx:key="*this">{{index + 1}}. {{item}}</view>
+  </view>
+
+  <view class="card" wx:if="{{coachingTips.length || encouragementText}}">
+    <view class="card-title">即时反馈</view>
+    <view class="tip" wx:for="{{coachingTips}}" wx:key="*this">{{index + 1}}. {{item}}</view>
+    <view class="encouragement" wx:if="{{encouragementText}}">{{encouragementText}}</view>
+  </view>
+
+  <view class="card">
+    <button class="btn-primary" bindtap="goDiary">记录今天的睡眠日记</button>
+    <button class="btn-secondary" bindtap="goHistory">查看历史记录</button>
+    <button class="btn-secondary" bindtap="goTemplates">下载打印日记模板</button>
+    <button class="btn-secondary" bindtap="goGuide">CBT-I介绍与原则</button>
+  </view>
+
+  <view class="tip" style="margin-top: 20rpx;">
+    本工具用于 CBT-I 自助练习，不替代医疗诊断与治疗。
+  </view>
+</view>

@@ -1,0 +1,4 @@
+.DS_Store
+project.private.config.json
+release/preview-qr*.png
+release/preview-info*.json

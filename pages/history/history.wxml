@@ -1,0 +1,41 @@
+<view class="container">
+  <view class="card history-intro">
+    <view class="card-title">趋势比单日更重要</view>
+    <view class="tip">建议至少观察最近 7 天变化，再做睡眠窗口判断。</view>
+  </view>
+
+  <view class="card" wx:if="{{!records.length}}">
+    <view class="card-title">还没有记录</view>
+    <view class="tip">从今天开始，连续记录是 CBT-I 成效的关键。</view>
+    <button class="btn-primary" bindtap="goDiary" style="margin-top: 18rpx;">去记录今天日记</button>
+  </view>
+
+  <view class="card history-card" wx:for="{{records}}" wx:key="date">
+    <view class="row">
+      <text class="card-title" style="margin-bottom: 0;">{{item.date}}</text>
+      <text class="muted">{{item.inBedTime}} - {{item.outBedTime}}</text>
+    </view>
+
+    <view class="row">
+      <text class="label">总睡眠时长</text>
+      <text class="value">{{item.sleepText}}</text>
+    </view>
+
+    <view class="row">
+      <text class="label">睡眠效率</text>
+      <text class="value">{{item.efficiencyText}}</text>
+    </view>
+
+    <view class="row">
+      <text class="label">床上时长</text>
+      <text class="value">{{item.inBedText}}</text>
+    </view>
+
+    <view class="divider"></view>
+
+    <view class="row action-row" style="margin-bottom: 0;">
+      <button class="small-btn" data-date="{{item.date}}" bindtap="onEdit">编辑</button>
+      <button class="small-btn danger" data-date="{{item.date}}" bindtap="onDelete">删除</button>
+    </view>
+  </view>
+</view>

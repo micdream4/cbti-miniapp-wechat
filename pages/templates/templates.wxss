@@ -1,0 +1,18 @@
+.templates-intro {
+  background: linear-gradient(145deg, #f8fbf8 0%, #edf4ef 100%);
+}
+
+.tip {
+  word-break: break-all;
+}
+
+.path-box {
+  margin-top: 10rpx;
+  background: #f5faf6;
+  border: 1rpx solid #dce7df;
+  border-radius: 12rpx;
+  color: #5e746a;
+  font-size: 24rpx;
+  padding: 12rpx 14rpx;
+  word-break: break-all;
+}

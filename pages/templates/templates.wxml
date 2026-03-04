@@ -1,0 +1,19 @@
+<view class="container">
+  <view class="card templates-intro">
+    <view class="card-title">纸质模板下载</view>
+    <view class="tip">为降低手机使用负担，你可以打印纸质日记，手写记录后再统一录入。</view>
+    <view class="tip" style="margin-top: 10rpx;">你已把原始模板放在项目目录：</view>
+    <view class="path-box">/resources/templates/</view>
+  </view>
+
+  <view class="card" wx:for="{{files}}" wx:key="id">
+    <view class="card-title">{{item.title}}</view>
+    <view class="tip">{{item.description}}</view>
+    <view class="tip" style="margin-top: 10rpx;">文件名：{{item.fileName}}</view>
+    <view class="tip" style="margin-top: 6rpx;">链接：{{item.url || '（未配置）'}}</view>
+    <view class="tip" wx:if="{{item.accessCode}}">提取码：{{item.accessCode}}</view>
+
+    <button class="btn-primary" data-url="{{item.url}}" data-code="{{item.accessCode}}" bindtap="onDownloadOpen" style="margin-top: 16rpx;">下载并打开</button>
+    <button class="btn-secondary" data-url="{{item.url}}" data-code="{{item.accessCode}}" bindtap="onCopyLink">复制下载信息</button>
+  </view>
+</view>
