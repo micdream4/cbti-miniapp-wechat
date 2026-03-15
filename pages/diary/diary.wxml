@@ -17,14 +17,14 @@
     <view class="row form-row">
       <text class="label">上床时间</text>
       <picker mode="time" value="{{form.inBedTime}}" data-field="inBedTime" bindchange="onTimeChange">
-        <view class="picker value field-control">{{form.inBedTime}}</view>
+        <view class="picker value field-control">{{form.inBedTime || '请选择'}}</view>
       </picker>
     </view>
 
     <view class="row form-row">
       <text class="label">起床时间</text>
       <picker mode="time" value="{{form.outBedTime}}" data-field="outBedTime" bindchange="onTimeChange">
-        <view class="picker value field-control">{{form.outBedTime}}</view>
+        <view class="picker value field-control">{{form.outBedTime || '请选择'}}</view>
       </picker>
     </view>
 
@@ -34,20 +34,26 @@
     </view>
 
     <view class="row form-row">
-      <text class="label">夜间清醒总时长（分钟）</text>
+      <text class="label">夜间醒后在床清醒（分钟）</text>
       <input class="input field-control" type="number" data-field="wakeAfterSleepOnsetMin" value="{{form.wakeAfterSleepOnsetMin}}" bindinput="onNumberInput" />
     </view>
 
     <view class="row form-row">
-      <text class="label">早醒后未再入睡（分钟）</text>
+      <text class="label">早醒后在床未再睡（分钟）</text>
       <input class="input field-control" type="number" data-field="earlyWakeMin" value="{{form.earlyWakeMin}}" bindinput="onNumberInput" />
+    </view>
+
+    <view class="row form-row">
+      <text class="label">夜间离床清醒（分钟）</text>
+      <input class="input field-control" type="number" data-field="outOfBedAwakeMin" value="{{form.outOfBedAwakeMin}}" bindinput="onNumberInput" />
     </view>
 
     <view class="row form-row">
       <text class="label">白天小睡（分钟）</text>
       <input class="input field-control" type="number" data-field="napMin" value="{{form.napMin}}" bindinput="onNumberInput" />
     </view>
-    <view class="tip inline-tip">说明：白天小睡不计入“夜间总睡眠时长”，仅用于习惯分析。</view>
+    <view class="tip inline-tip">说明：前三项填写“在床清醒时长”；若执行刺激控制并离床，请填“夜间离床清醒”，系统会从床上总时长中扣减。</view>
+    <view class="tip inline-tip">白天小睡不计入“夜间总睡眠时长”，仅用于习惯分析。</view>
   </view>
 
   <view class="card">
@@ -104,8 +110,22 @@
 
     <view class="divider"></view>
     <view class="label" style="margin-bottom: 12rpx;">备注（可选）</view>
-    <textarea class="textarea" maxlength="200" value="{{form.note}}" bindinput="onNoteInput" placeholder="例如：今天压力较大，夜间醒来2次" />
+    <textarea
+      class="textarea note-textarea"
+      maxlength="400"
+      value="{{form.note}}"
+      bindinput="onNoteInput"
+      bindfocus="onNoteFocus"
+      bindblur="onNoteBlur"
+      bindkeyboardheightchange="onNoteKeyboardHeightChange"
+      cursor-spacing="220"
+      show-confirm-bar="true"
+      auto-height
+      placeholder="例如：今天压力较大，夜间醒来2次"
+    />
   </view>
+
+  <view wx:if="{{noteFocus && noteKeyboardHeight > 0}}" style="height: {{noteKeyboardHeight + 24}}px;"></view>
 
   <view class="card">
     <view class="card-title">自动计算（预览）</view>

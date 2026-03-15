@@ -87,6 +87,19 @@ function addDays(dateText, delta) {
   return dateToText(base);
 }
 
+function diffDateDays(startDateText, endDateText) {
+  const start = parseDateText(startDateText);
+  const end = parseDateText(endDateText);
+  if (!start || !end) {
+    return 0;
+  }
+
+  const oneDay = 24 * 60 * 60 * 1000;
+  const startMidnight = new Date(start.getFullYear(), start.getMonth(), start.getDate()).getTime();
+  const endMidnight = new Date(end.getFullYear(), end.getMonth(), end.getDate()).getTime();
+  return Math.round((endMidnight - startMidnight) / oneDay);
+}
+
 module.exports = {
   toMinutes,
   fromMinutes,
@@ -96,5 +109,6 @@ module.exports = {
   roundToQuarter,
   minutesToDuration,
   getTodayDateText,
-  addDays
+  addDays,
+  diffDateDays
 };

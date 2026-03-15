@@ -38,6 +38,7 @@ Page({
     avgSleep: '-',
     avgEfficiency: '-',
     reason: '',
+    pendingSummaryHint: '',
     habitTips: [],
     coachingTips: [],
     encouragementText: ''
@@ -90,6 +91,7 @@ Page({
       avgSleep: recommendation.avgSleepMin ? minutesToDuration(recommendation.avgSleepMin) : '-',
       avgEfficiency: recommendation.avgEfficiency ? toPercent(recommendation.avgEfficiency) : '-',
       reason: recommendation.reason,
+      pendingSummaryHint: recommendation.pendingSummaryHint || '',
       habitTips: recommendation.habitTips,
       coachingTips: coaching.instantTips || [],
       encouragementText: coaching.encouragement || ''

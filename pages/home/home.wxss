@@ -1,3 +1,27 @@
+.anchor-core {
+  background: linear-gradient(145deg, #f8fcf8 0%, #eef5ef 100%);
+}
+
+.anchor-time {
+  font-size: 52rpx;
+  line-height: 1.1;
+  font-weight: 700;
+  color: #2d4138;
+  margin-bottom: 12rpx;
+}
+
+.anchor-row {
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.anchor-picker {
+  width: 230rpx;
+  min-width: 230rpx;
+  height: 74rpx;
+  box-sizing: border-box;
+}
+
 .hero-card {
   background: linear-gradient(145deg, #f8fcf8 0%, #eef4ef 68%, #eaf0ea 100%);
 }
@@ -28,11 +52,20 @@
   margin-top: 12rpx;
 }
 
+.hero-hint {
+  margin-top: 12rpx;
+  padding: 14rpx 16rpx;
+  border-radius: 14rpx;
+  background: rgba(233, 240, 235, 0.9);
+  border: 1rpx solid #d7e4db;
+  color: #486258;
+}
+
 .hero-pills {
   display: flex;
   flex-wrap: wrap;
   gap: 12rpx;
-  margin-top: 14rpx;
+  margin-top: 12rpx;
 }
 
 .btn-apply {

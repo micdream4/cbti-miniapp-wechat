@@ -4,38 +4,93 @@
     <view class="tip">建议至少观察最近 7 天变化，再做睡眠窗口判断。</view>
   </view>
 
-  <view class="card" wx:if="{{!records.length}}">
+  <view class="card" wx:if="{{!hasRecords}}">
     <view class="card-title">还没有记录</view>
     <view class="tip">从今天开始，连续记录是 CBT-I 成效的关键。</view>
     <button class="btn-primary" bindtap="goDiary" style="margin-top: 18rpx;">去记录今天日记</button>
   </view>
 
-  <view class="card history-card" wx:for="{{records}}" wx:key="date">
-    <view class="row">
-      <text class="card-title" style="margin-bottom: 0;">{{item.date}}</text>
-      <text class="muted">{{item.inBedTime}} - {{item.outBedTime}}</text>
+  <block wx:for="{{timeline}}" wx:key="key">
+    <view class="card history-card" wx:if="{{item.type === 'record'}}">
+      <view class="row">
+        <text class="card-title" style="margin-bottom: 0;">{{item.date}}</text>
+        <text class="muted">{{item.inBedTime}} - {{item.outBedTime}}</text>
+      </view>
+
+      <view class="row">
+        <text class="label">总睡眠时长</text>
+        <text class="value">{{item.sleepText}}</text>
+      </view>
+
+      <view class="row">
+        <text class="label">睡眠效率</text>
+        <text class="value">{{item.efficiencyText}}</text>
+      </view>
+
+      <view class="row">
+        <text class="label">床上时长</text>
+        <text class="value">{{item.inBedText}}</text>
+      </view>
+
+      <view class="divider"></view>
+
+      <view class="row action-row" style="margin-bottom: 0;">
+        <button class="small-btn" data-date="{{item.date}}" bindtap="onEdit">编辑</button>
+        <button class="small-btn danger" data-date="{{item.date}}" bindtap="onDelete">删除</button>
+      </view>
     </view>
 
-    <view class="row">
-      <text class="label">总睡眠时长</text>
-      <text class="value">{{item.sleepText}}</text>
-    </view>
+    <view class="card weekly-summary" wx:elif="{{item.type === 'summary'}}">
+      <view class="row weekly-head" style="margin-bottom: 10rpx;">
+        <view>
+          <view class="card-title" style="margin-bottom: 6rpx;">{{item.title}}</view>
+          <view class="tip">统计周期：{{item.periodText}}</view>
+        </view>
+        <button class="weekly-toggle-btn" data-summary-id="{{item.summaryId}}" bindtap="onToggleWeeklySummary">
+          {{item.expanded ? '收起详情' : '查看详情'}}
+        </button>
+      </view>
 
-    <view class="row">
-      <text class="label">睡眠效率</text>
-      <text class="value">{{item.efficiencyText}}</text>
-    </view>
+      <view wx:if="{{item.expanded}}">
+        <view class="table-wrap">
+          <view class="table-row table-header">
+            <text class="cell cell-date">日期</text>
+            <text class="cell">上床</text>
+            <text class="cell">起床</text>
+            <text class="cell cell-sleep">睡眠</text>
+          </view>
+          <view class="table-row" wx:for="{{item.weekRows}}" wx:for-item="row" wx:for-index="rowIndex" wx:key="date">
+            <text class="cell cell-date">{{row.date}}</text>
+            <text class="cell">{{row.inBedTime}}</text>
+            <text class="cell">{{row.outBedTime}}</text>
+            <text class="cell cell-sleep">{{row.sleepText}}</text>
+          </view>
+        </view>
 
-    <view class="row">
-      <text class="label">床上时长</text>
-      <text class="value">{{item.inBedText}}</text>
-    </view>
+        <view class="metric-grid">
+          <view class="metric-item">
+            <text class="label">平均睡眠</text>
+            <text class="metric-value">{{item.avgSleepText}}</text>
+          </view>
+          <view class="metric-item">
+            <text class="label">平均效率</text>
+            <text class="metric-value">{{item.avgEfficiencyText}}</text>
+          </view>
+        </view>
 
-    <view class="divider"></view>
+        <view class="summary-title">做得好的地方</view>
+        <view class="tip" wx:for="{{item.strengths}}" wx:for-item="strength" wx:for-index="strengthIndex" wx:key="*this">{{strengthIndex + 1}}. {{strength}}</view>
 
-    <view class="row action-row" style="margin-bottom: 0;">
-      <button class="small-btn" data-date="{{item.date}}" bindtap="onEdit">编辑</button>
-      <button class="small-btn danger" data-date="{{item.date}}" bindtap="onDelete">删除</button>
+        <view class="summary-title">需要关注</view>
+        <view class="tip" wx:for="{{item.risks}}" wx:for-item="risk" wx:for-index="riskIndex" wx:key="*this">{{riskIndex + 1}}. {{risk}}</view>
+
+        <view class="summary-title">下周重点</view>
+        <view class="tip" wx:for="{{item.nextFocus}}" wx:for-item="focus" wx:for-index="focusIndex" wx:key="*this">{{focusIndex + 1}}. {{focus}}</view>
+
+        <view class="divider"></view>
+        <view class="tip">{{item.windowAdjustText}}</view>
+        <view class="tip">建议执行时段：{{item.suggestedRangeText}}</view>
+      </view>
     </view>
-  </view>
+  </block>
 </view>

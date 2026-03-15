@@ -5,6 +5,11 @@
     <view class="hero-window">当前睡眠窗口：{{sleepWindow}}</view>
     <view class="hero-window" wx:if="{{nextSleepWindow}}">本周建议窗口：{{nextSleepWindow}}</view>
     <view class="tip hero-reason">{{reason}}</view>
+    <view class="tip hero-hint" wx:if="{{pendingSummaryHint}}">{{pendingSummaryHint}}</view>
+    <view class="hero-pills">
+      <text class="pill">步骤1：守住锚点</text>
+      <text class="pill">步骤2：按窗口上床</text>
+    </view>
     <view class="hero-pills">
       <text class="pill">本周期 {{cycleProgress}}</text>
       <text class="pill">近7天效率 {{avgEfficiency}}</text>
@@ -12,22 +17,23 @@
     <button class="btn-apply" wx:if="{{canApplyWindow}}" bindtap="onApplyWindow">生效本周窗口</button>
   </view>
 
-  <view class="card">
+  <view class="card anchor-core">
     <view class="card-title">执行锚点</view>
-    <view class="row">
+    <view class="anchor-time">{{fixedWakeTime}}</view>
+    <view class="tip">每天先守住固定起床时间，再根据建议窗口安排上床时间。</view>
+    <view class="row anchor-row">
       <text class="label">固定起床时间</text>
       <picker mode="time" value="{{fixedWakeTime}}" bindchange="onWakeTimeChange">
-        <view class="picker value">{{fixedWakeTime}}</view>
+        <view class="picker value anchor-picker">{{fixedWakeTime}}</view>
       </picker>
     </view>
-    <view class="row">
+    <view class="row anchor-row">
       <text class="label">已有习惯可手动设窗</text>
       <picker mode="selector" range="{{windowOptions}}" range-key="label" value="{{selectedWindowIndex}}" bindchange="onWindowOptionChange">
-        <view class="picker value">{{windowOptions[selectedWindowIndex].label}}</view>
+        <view class="picker value anchor-picker">{{windowOptions[selectedWindowIndex].label}}</view>
       </picker>
     </view>
     <view class="tip">首周默认只记录。若你已有稳定作息，可先手动设置睡眠窗口执行。</view>
-    <view class="tip">每天优先守住固定起床时间，再根据建议窗口执行即可。</view>
   </view>
 
   <view class="card">
